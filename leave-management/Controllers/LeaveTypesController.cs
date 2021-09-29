@@ -2,6 +2,7 @@
 using leave_management.Contracts;
 using leave_management.Data;
 using leave_management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,17 +12,18 @@ using System.Threading.Tasks;
 
 namespace leave_management.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
 
         private readonly ILeaveTypeRepository _repo;
-       // private readonly IUnitOfWork _unitOfWork;
+        // private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public LeaveTypesController(ILeaveTypeRepository repo, IMapper mapper)
         {
             _repo = repo;
-           // _unitOfWork = unitOfWork;
+            // _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
@@ -58,7 +60,7 @@ namespace leave_management.Controllers
         {
             try
             {
-               
+
                 // TODO: Add insert logic here
                 if (ModelState.IsValid == false)
                 {
@@ -87,7 +89,7 @@ namespace leave_management.Controllers
         // GET: LeaveTypesController/Edit/5
         public ActionResult Edit(int id)
         {
-           
+
             if (!_repo.isExists(id))
             {
                 return NotFound();
