@@ -16,8 +16,8 @@ namespace leave_management.Models
         public DateTime DateCreated { get; set; }
         public int Period { get; set; }
 
-        public EmployeeVM Employee { get; set; }
-        public string EmployeeId { get; set; }
+        public IdentityUserVM IdentityUser { get; set; }
+        public string IdentityUserId { get; set; }
 
         public LeaveTypeVM LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
@@ -33,8 +33,8 @@ namespace leave_management.Models
     {
         public int Id { get; set; }
 
-        public EmployeeVM Employee { get; set; }
-        public string EmployeeId { get; set; }
+        public IdentityUserVM IdentityUser { get; set; }
+        public string IdentityUserId { get; set; }
         [Display(Name = "Number Of Days")]
         [Range(1, 50, ErrorMessage = "Enter Valid Number")]
         public int NumberOfDays { get; set; }
@@ -44,8 +44,8 @@ namespace leave_management.Models
 
     public class ViewAllocationsVM
     {
-        public EmployeeVM Employee { get; set; }
-        public string EmployeeId { get; set; }
+        public IdentityUserVM IdentityUser { get; set; }
+        public string IdentityUserId { get; set; }
         public List<LeaveAllocationVM> LeaveAllocations { get; set; }
     }
 }

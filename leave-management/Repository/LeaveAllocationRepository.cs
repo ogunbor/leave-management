@@ -39,7 +39,7 @@ namespace leave_management.Repository
             return LeaveAllocation;
         }
 
-        public ICollection<LeaveAllocation> GetEmployeesByLeaveAllocation(int id)
+        public ICollection<LeaveAllocation> GetIdentityUsersByLeaveAllocation(int id)
         {
             throw new NotImplementedException();
         }

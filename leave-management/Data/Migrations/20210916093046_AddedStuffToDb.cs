@@ -61,7 +61,7 @@ namespace leave_management.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumberOfDays = table.Column<int>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    EmployeeId = table.Column<string>(nullable: true),
+                    IdentityUserId = table.Column<string>(nullable: true),
                     LeaveTypeId = table.Column<int>(nullable: false),
                     Period = table.Column<int>(nullable: false)
                 },
@@ -69,8 +69,8 @@ namespace leave_management.Data.Migrations
                 {
                     table.PrimaryKey("PK_LeaveAllocations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LeaveAllocations_AspNetUsers_EmployeeId",
-                        column: x => x.EmployeeId,
+                        name: "FK_LeaveAllocations_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -88,7 +88,7 @@ namespace leave_management.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RequestingEmployeeId = table.Column<string>(nullable: true),
+                    RequestingIdentityUserId = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
                     LeaveTypeId = table.Column<int>(nullable: false),
@@ -115,17 +115,17 @@ namespace leave_management.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LeaveRequests_AspNetUsers_RequestingEmployeeId",
-                        column: x => x.RequestingEmployeeId,
+                        name: "FK_LeaveRequests_AspNetUsers_RequestingIdentityUserId",
+                        column: x => x.RequestingIdentityUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LeaveAllocations_EmployeeId",
+                name: "IX_LeaveAllocations_IdentityUserId",
                 table: "LeaveAllocations",
-                column: "EmployeeId");
+                column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LeaveAllocations_LeaveTypeId",
@@ -143,9 +143,9 @@ namespace leave_management.Data.Migrations
                 column: "LeaveTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LeaveRequests_RequestingEmployeeId",
+                name: "IX_LeaveRequests_RequestingIdentityUserId",
                 table: "LeaveRequests",
-                column: "RequestingEmployeeId");
+                column: "RequestingIdentityUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

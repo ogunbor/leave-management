@@ -235,7 +235,7 @@ namespace leave_management.Data.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeId")
+                    b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("LeaveTypeId")
@@ -249,7 +249,7 @@ namespace leave_management.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("IdentityUserId");
 
                     b.HasIndex("LeaveTypeId");
 
@@ -287,7 +287,7 @@ namespace leave_management.Data.Migrations
                     b.Property<string>("RequestComments")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RequestingEmployeeId")
+                    b.Property<string>("RequestingIdentityUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("StartDate")
@@ -299,7 +299,7 @@ namespace leave_management.Data.Migrations
 
                     b.HasIndex("LeaveTypeId");
 
-                    b.HasIndex("RequestingEmployeeId");
+                    b.HasIndex("RequestingIdentityUserId");
 
                     b.ToTable("LeaveRequests");
                 });
@@ -325,7 +325,7 @@ namespace leave_management.Data.Migrations
                     b.ToTable("LeaveTypes");
                 });
 
-            modelBuilder.Entity("leave_management.Data.Employee", b =>
+            modelBuilder.Entity("leave_management.Data.IdentityUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -344,7 +344,7 @@ namespace leave_management.Data.Migrations
                     b.Property<string>("TaxId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.HasDiscriminator().HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -400,9 +400,9 @@ namespace leave_management.Data.Migrations
 
             modelBuilder.Entity("leave_management.Data.LeaveAllocation", b =>
                 {
-                    b.HasOne("leave_management.Data.Employee", "Employee")
+                    b.HasOne("leave_management.Data.IdentityUser", "IdentityUser")
                         .WithMany()
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("IdentityUserId");
 
                     b.HasOne("leave_management.Data.LeaveType", "LeaveType")
                         .WithMany()
@@ -413,7 +413,7 @@ namespace leave_management.Data.Migrations
 
             modelBuilder.Entity("leave_management.Data.LeaveRequest", b =>
                 {
-                    b.HasOne("leave_management.Data.Employee", "ApprovedBy")
+                    b.HasOne("leave_management.Data.IdentityUser", "ApprovedBy")
                         .WithMany()
                         .HasForeignKey("ApprovedById");
 
@@ -423,9 +423,9 @@ namespace leave_management.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("leave_management.Data.Employee", "RequestingEmployee")
+                    b.HasOne("leave_management.Data.IdentityUser", "RequestingIdentityUser")
                         .WithMany()
-                        .HasForeignKey("RequestingEmployeeId");
+                        .HasForeignKey("RequestingIdentityUserId");
                 });
 #pragma warning restore 612, 618
         }
