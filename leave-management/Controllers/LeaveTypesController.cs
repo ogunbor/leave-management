@@ -15,7 +15,7 @@ namespace leave_management.Controllers
     [Authorize(Roles = "Administrator")]
     public class LeaveTypesController : Controller
     {
-
+        //Jerry
         private readonly ILeaveTypeRepository _repo;
         // private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
