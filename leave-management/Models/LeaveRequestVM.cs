@@ -10,9 +10,9 @@ namespace leave_management.Models
     public class LeaveRequestVM
     {
         public int Id { get; set; }
-        public IdentityUserVM RequestingIdentityUser { get; set; }
-        [Display(Name = "IdentityUser Name")]
-        public string RequestingIdentityUserId { get; set; }
+        public EmployeeVM RequestingEmployee { get; set; }
+        [Display(Name = "Employee Name")]
+        public string RequestingEmployeeId { get; set; }
         [Display(Name = "Start Date")]
         [Required]
         [DataType(DataType.Date)]
@@ -30,11 +30,11 @@ namespace leave_management.Models
         public DateTime DateActioned { get; set; }
         [Display(Name = "Approval State")]
         public bool? Approved { get; set; }
-        public IdentityUserVM ApprovedBy { get; set; }
+        public EmployeeVM ApprovedBy { get; set; }
         [Display(Name = "Approver Name")]
         public string ApprovedById { get; set; }
         public bool Cancelled { get; set; }
-        [Display(Name = "IdentityUser Comments")]
+        [Display(Name = "Employee Comments")]
         [MaxLength(300)]
         public string RequestComments { get; set; }
     }
@@ -69,7 +69,7 @@ namespace leave_management.Models
         public string RequestComments { get; set; }
     }
 
-    public class IdentityUserLeaveRequestViewVM
+    public class EmployeeLeaveRequestViewVM
     {
         public List<LeaveAllocationVM> LeaveAllocations { get; set; }
         public List<LeaveRequestVM> LeaveRequests { get; set; }

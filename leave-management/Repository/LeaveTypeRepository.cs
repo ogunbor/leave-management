@@ -39,7 +39,7 @@ namespace leave_management.Repository
             return leaveType;
         }
 
-        public ICollection<LeaveType> GetIdentityUsersByLeaveType(int id)
+        public ICollection<LeaveType> GetEmployeesByLeaveType(int id)
         {
             throw new NotImplementedException();
         }
